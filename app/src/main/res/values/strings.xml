@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ToDoListApp</string>
+    <string name="cd_add_new_task">Add new task</string>
+    <string name="cd_important_task">Important task</string>
 </resources>
