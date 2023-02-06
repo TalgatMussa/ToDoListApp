@@ -12,7 +12,7 @@
         android:theme="@style/Theme.ToDoListApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
