@@ -1,4 +1,4 @@
-package com.example.ui.tasks
+package com.example.todolistapp.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -6,7 +6,7 @@
     app:startDestination="@id/tasksFragment">
     <fragment
         android:id="@+id/tasksFragment"
-        android:name="com.example.ui.tasks.TasksFragment"
+        android:name="com.example.todolistapp.ui.fragments.TasksFragment"
         android:label="fragment_tasks"
         tools:layout="@layout/fragment_tasks" />
 </navigation>
