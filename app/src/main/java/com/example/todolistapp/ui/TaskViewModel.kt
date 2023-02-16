@@ -34,5 +34,11 @@ class TaskViewModel(
         taskRepository.delete(task)
     }
 
+    fun onTaskSelected(task: Task) {
 
+    }
+
+    fun onTaskCheckedChanged(task: Task, isChecked: Boolean) = viewModelScope.launch {
+        taskRepository.update(task.copy(completed = isChecked))
+    }
 }

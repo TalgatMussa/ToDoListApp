@@ -20,7 +20,7 @@ import com.example.todolistapp.ui.TaskViewModelProviderFactory
 import com.example.todolistapp.ui.TodoApplication
 import kotlinx.coroutines.launch
 
-class TasksFragment : Fragment(), SearchView.OnQueryTextListener {
+class TasksFragment : Fragment(), SearchView.OnQueryTextListener, TasksAdapter.OnItemClickListener {
     private var _binding: FragmentTasksBinding? = null
     private val binding get() = _binding!!
     private var tasksAdapter: TasksAdapter? = null
@@ -71,11 +71,11 @@ class TasksFragment : Fragment(), SearchView.OnQueryTextListener {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
 
-        lifecycleScope.launch {
-            viewModel.taskRepository.insert(Task("asdasdasdasd"))
-            viewModel.taskRepository.insert(Task("Buy groceries", important = true))
-            viewModel.taskRepository.insert(Task("Prepare food", completed = true))
-        }
+//        lifecycleScope.launch {
+//            viewModel.taskRepository.insert(Task("asdasdasdasd"))
+//            viewModel.taskRepository.insert(Task("Buy groceries", important = true))
+//            viewModel.taskRepository.insert(Task("Prepare food", completed = true))
+//        }
 
         viewModel.task.observe(viewLifecycleOwner) {
             tasksAdapter?.submitList(it)
@@ -87,8 +87,16 @@ class TasksFragment : Fragment(), SearchView.OnQueryTextListener {
         _binding = null
     }
 
+    override fun onItemClick(task: Task) {
+        viewModel.onTaskSelected(task)
+    }
+
+    override fun onCheckBoxClick(task: Task, isChecked: Boolean) {
+        viewModel.onTaskCheckedChanged(task, isChecked)
+    }
+
     private fun setupRecyclerView() {
-        tasksAdapter = TasksAdapter()
+        tasksAdapter = TasksAdapter(this@TasksFragment)
         binding.apply {
             recyclerViewTasks.adapter = tasksAdapter
             recyclerViewTasks.layoutManager = LinearLayoutManager(requireContext())
