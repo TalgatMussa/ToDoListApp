@@ -20,6 +20,7 @@ abstract class TaskDatabase: RoomDatabase() {
                     TaskDatabase::class.java,
                     "task_database.db"
                 ).build()
+                INSTANCE = instance
                 instance
             }
         }

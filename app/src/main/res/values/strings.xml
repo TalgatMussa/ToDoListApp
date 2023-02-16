@@ -4,4 +4,10 @@
     <string name="cd_important_task">Important task</string>
     <string name="hint_task_name">Task name</string>
     <string name="important_task">Important task</string>
+    <string name="item_search_text">Search</string>
+    <string name="item_sort_text">Sort</string>
+    <string name="item_sort_by_name_text">Sort by name</string>
+    <string name="item_sort_by_date_created_text">Sort by date created</string>
+    <string name="item_hide_completed_text">Hide completed</string>
+    <string name="item_delete_all_completed_text">Delete all completed</string>
 </resources>

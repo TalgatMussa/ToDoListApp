@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.todolistapp.repository.TaskRepository
 
 class TaskViewModelProviderFactory(
-    val taskRepository: TaskRepository
+    private val taskRepository: TaskRepository
     ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

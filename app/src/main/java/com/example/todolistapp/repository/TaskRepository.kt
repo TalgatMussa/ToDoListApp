@@ -3,8 +3,8 @@ package com.example.todolistapp.repository
 import com.example.todolistapp.db.TaskDatabase
 import com.example.todolistapp.model.Task
 
-class TaskRepository(val db: TaskDatabase) {
-    fun getTask() = db.taskDao().getTasks()
+class TaskRepository(private val db: TaskDatabase) {
+    fun getTasks(searchQuery: String) = db.taskDao().getTasks(searchQuery)
 
     suspend fun insert(task: Task) = db.taskDao().insert(task)
 
