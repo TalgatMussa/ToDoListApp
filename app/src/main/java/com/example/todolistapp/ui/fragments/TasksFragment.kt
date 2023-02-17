@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistapp.R
 import com.example.todolistapp.adapters.TasksAdapter
 import com.example.todolistapp.databinding.FragmentTasksBinding
@@ -18,6 +21,8 @@ import com.example.todolistapp.repository.TaskRepository
 import com.example.todolistapp.ui.TaskViewModel
 import com.example.todolistapp.ui.TaskViewModelProviderFactory
 import com.example.todolistapp.ui.TodoApplication
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class TasksFragment : Fragment(), SearchView.OnQueryTextListener, TasksAdapter.OnItemClickListener {
@@ -40,6 +45,25 @@ class TasksFragment : Fragment(), SearchView.OnQueryTextListener, TasksAdapter.O
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val task = tasksAdapter!!.currentList[viewHolder.adapterPosition]
+                viewModel.onTaskSwiped(task)
+            }
+        }).attachToRecyclerView(binding.recyclerViewTasks)
+
 
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -80,6 +104,22 @@ class TasksFragment : Fragment(), SearchView.OnQueryTextListener, TasksAdapter.O
         viewModel.task.observe(viewLifecycleOwner) {
             tasksAdapter?.submitList(it)
         }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.tasksEvent.collect() { event ->
+                    when (event) {
+                        is TaskViewModel.TasksEvent.ShowUndoDeleteTaskMessage -> {
+                            // Или view или requireView()
+                            Snackbar.make(requireView(), "Task deleted", Snackbar.LENGTH_LONG)
+                                .setAction("UNDO") {
+                                    viewModel.onUndoDeleteClick(event.task)
+                                }.show()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -114,4 +154,3 @@ class TasksFragment : Fragment(), SearchView.OnQueryTextListener, TasksAdapter.O
         return true
     }
 }
-
