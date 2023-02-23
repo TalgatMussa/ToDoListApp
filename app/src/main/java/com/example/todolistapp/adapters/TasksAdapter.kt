@@ -2,7 +2,6 @@ package com.example.todolistapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -27,9 +26,7 @@ class TasksAdapter(
         init {
             binding.apply {
                 root.setOnClickListener {
-
                     val position = adapterPosition
-
                     if (position != RecyclerView.NO_POSITION) {
                         val task = getItem(position)
                         listener.onItemClick(task)
@@ -49,7 +46,6 @@ class TasksAdapter(
             checkBoxCompleted.isChecked = task.completed
             textViewName.text = task.name
             textViewName.paint.isStrikeThruText = task.completed
-            labelPriority.isVisible = task.important
         }
     }
 

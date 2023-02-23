@@ -17,16 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
-        android:id="@+id/check_box_important"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:text="@string/important_task"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_text_task_name" />
-
     <TextView
         android:id="@+id/text_view_date_created"
         android:layout_width="0dp"
@@ -34,7 +24,7 @@
         android:layout_marginHorizontal="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/check_box_important"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_task_name"
         tools:text="Date created:" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

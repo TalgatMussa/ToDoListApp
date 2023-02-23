@@ -8,34 +8,4 @@
         android:title="@string/item_search_text"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always|collapseActionView" />
-
-    <item
-        android:icon="@drawable/ic_sort"
-        android:title="@string/item_sort_text"
-        app:showAsAction="always">
-
-        <menu>
-
-            <item
-                android:id="@+id/action_sort_by_name"
-                android:title="@string/item_sort_by_name_text" />
-
-            <item
-                android:id="@+id/action_sort_by_date_created"
-                android:title="@string/item_sort_by_date_created_text" />
-
-        </menu>
-    </item>
-
-    <item
-        android:id="@+id/action_hide_completed_tasks"
-        android:checkable="true"
-        android:title="@string/item_hide_completed_text"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_delete_all_completed_tasks"
-        android:title="@string/item_delete_all_completed_text"
-        app:showAsAction="never" />
-
 </menu>
