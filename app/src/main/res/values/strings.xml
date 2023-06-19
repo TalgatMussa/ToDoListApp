@@ -10,4 +10,5 @@
     <string name="item_sort_by_date_created_text">Sort by date created</string>
     <string name="item_hide_completed_text">Hide completed</string>
     <string name="item_delete_all_completed_text">Delete all completed</string>
+    <string name="task_name_is_empty">Task name is empty</string>
 </resources>

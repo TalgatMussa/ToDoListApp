@@ -20,7 +20,7 @@
         tools:layout="@layout/fragment_add_edit_task">
         <argument
             android:name="task"
-            app:argType="com.example.todolistapp.model.Task"
+            app:argType="com.example.todolistapp.data.model.Task"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>

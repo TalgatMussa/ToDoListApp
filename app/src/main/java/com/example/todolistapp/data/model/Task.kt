@@ -1,4 +1,4 @@
-package com.example.todolistapp.model
+package com.example.todolistapp.data.model
 
 import android.os.Parcelable
 import androidx.room.Entity

@@ -2,13 +2,15 @@ package com.example.todolistapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.todolistapp.repository.TaskRepository
+import com.example.todolistapp.data.repository.Repository
+import com.example.todolistapp.data.repository.RepositoryImpl
+import javax.inject.Inject
 
-class TaskViewModelProviderFactory(
-    private val taskRepository: TaskRepository
+class TaskViewModelProviderFactory @Inject constructor(
+    private val repository: Repository
     ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return TaskViewModel(taskRepository) as T
+        return TaskViewModel(repository) as T
     }
 }

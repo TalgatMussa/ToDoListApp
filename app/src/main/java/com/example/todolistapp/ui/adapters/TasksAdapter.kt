@@ -1,4 +1,4 @@
-package com.example.todolistapp.adapters
+package com.example.todolistapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistapp.databinding.ItemTaskBinding
-import com.example.todolistapp.model.Task
+import com.example.todolistapp.data.model.Task
 
 class TasksAdapter(
     private val listener: OnItemClickListener
